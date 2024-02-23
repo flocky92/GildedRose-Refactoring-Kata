@@ -2,6 +2,7 @@ package com.gildedrose;
 
 public class TexttestFixture {
     public static void main(String[] args) {
+        //test
         System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
