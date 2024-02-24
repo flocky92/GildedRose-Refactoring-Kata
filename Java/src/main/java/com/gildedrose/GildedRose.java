@@ -7,67 +7,40 @@ import java.util.Collections;
 import java.util.List;
 
 class GildedRose {
-    Item[] items;
+    private Item[] items; 
 
     public GildedRose(Item[] items) {
         this.items = items == null ? new Item[]{} : items;
     }
 
-    public void updateQuality() {     
-        for (int i = 0; i < items.length; i++) {
-            if (!Arrays.asList("Aged Brie","Backstage passes to a TAFKAL80ETC concert").contains(items[i].name)) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        if(!items[i].name.equals("Conjured Mana Cake"))
-                            items[i].quality = items[i].quality - 1;
-                        else
-                            items[i].quality =  items[i].quality > 2 ?  items[i].quality - 2 : 0;                        
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+    public void leeroyProcess(){
+        for (Item item : this.items) {
+            if(item.name == "Sulfuras, Hand of Ragnaros")
+                continue;
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
+            switch (item.name) {
+                case "Aged Brie":
+                    ItemProcess.agedBrieProcess(item);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    ItemProcess.backStageProcess(item);
+                    break;
+                case "Conjured Mana Cake":
+                    ItemProcess.defaultQualityProcess(item,2);
+                    break;
+                default:
+                    ItemProcess.defaultQualityProcess(item,1);
+                    break;
             }
-
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
-
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                if(!items[i].name.equals("Conjured Mana Cake"))
-                                    items[i].quality = items[i].quality - 1;
-                                else
-                                    items[i].quality =  items[i].quality > 2 ?  items[i].quality - 2 : 0;   
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
+            ItemProcess.checkDataValue(item);
         }
+    }  
+    
+    public Item[] getItems() {
+        return items;
+    }
+
+    public void setItems(Item[] items) {
+        this.items = items;
     }
 }
