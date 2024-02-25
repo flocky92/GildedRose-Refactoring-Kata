@@ -7,28 +7,29 @@ class GildedRose {
         this.items = items == null ? new Item[]{} : items;
     }
 
-    public void leeroyProcess(){
+    public void updateProcess(){
+        ProductInterface product;
         for (Item item : this.items) {
-            if(item.name == "Sulfuras, Hand of Ragnaros")
-                continue;
-
             switch (item.name) {
-                case "Aged Brie":
-                    ItemProcessUtils.agedBrieProcess(item);
+                case "Sulfuras, Hand of Ragnaros":
+                    product = new LegendProduct();
+                    break;
+                case "Aged Brie":        
+                    product = new AgedBrieProduct();
                     break;
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    ItemProcessUtils.backStageProcess(item);
+                    product = new BackstageProduct();
                     break;
-                case "Conjured Mana Cake":
-                    ItemProcessUtils.defaultQualityProcess(item,2);
+                case "Conjured Mana Cake":                    
+                    product = new ConjuredProduct();
                     break;
                 default:
-                    ItemProcessUtils.defaultQualityProcess(item,1);
+                    product = new CommomProduct();
                     break;
             }
-            ItemProcessUtils.checkDataValue(item);
+            product.update(item);
         }
-    }  
+    }
     
     public Item[] getItems() {
         return items;
@@ -37,4 +38,5 @@ class GildedRose {
     public void setItems(Item[] items) {
         this.items = items;
     }
+
 }
