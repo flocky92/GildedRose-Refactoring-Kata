@@ -4,6 +4,8 @@ public final class ItemProcessUtils {
     final static int maxQuality = 50;
     final static int baseDegradationQuality = 1;
 
+    private ItemProcessUtils(){}
+
     public static void defaultQualityProcess(Item item, int multiplicatorDegradation){
         multiplicatorDegradation = multiplicatorDegradation <= 0 ? 1 : multiplicatorDegradation;
         int currentDregradation = baseDegradationQuality * multiplicatorDegradation;
