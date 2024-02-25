@@ -1,11 +1,5 @@
 package com.gildedrose;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 class GildedRose {
     private Item[] items; 
 
@@ -20,19 +14,19 @@ class GildedRose {
 
             switch (item.name) {
                 case "Aged Brie":
-                    ItemProcess.agedBrieProcess(item);
+                    ItemProcessUtils.agedBrieProcess(item);
                     break;
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    ItemProcess.backStageProcess(item);
+                    ItemProcessUtils.backStageProcess(item);
                     break;
                 case "Conjured Mana Cake":
-                    ItemProcess.defaultQualityProcess(item,2);
+                    ItemProcessUtils.defaultQualityProcess(item,2);
                     break;
                 default:
-                    ItemProcess.defaultQualityProcess(item,1);
+                    ItemProcessUtils.defaultQualityProcess(item,1);
                     break;
             }
-            ItemProcess.checkDataValue(item);
+            ItemProcessUtils.checkDataValue(item);
         }
     }  
     

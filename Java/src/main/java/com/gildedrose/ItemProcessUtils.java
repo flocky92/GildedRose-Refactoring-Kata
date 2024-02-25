@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class ItemProcess {
+public final class ItemProcessUtils {
     final static int maxQuality = 50;
     final static int baseDegradationQuality = 1;
 
